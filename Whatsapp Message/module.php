@@ -1,6 +1,6 @@
 <?
 // Klassendefinition
-class DiscordMessage extends IPSModule {
+class WhatsappMessage extends IPSModule {
     // Überschreibt die interne IPS_Create($id) Funktion
     public function Create() {
         // Diese Zeile nicht löschen.
