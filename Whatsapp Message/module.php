@@ -25,7 +25,7 @@ class WhatsappMessage extends IPSModule {
     * DWM_SendMessage($id);
     *
     */
-    public function SendMessage($topic,$recip, array $paramvals) {
+    public function SendMessage(string $recip, array $paramvals) {
         
             $token = $this->ReadPropertyString("WbToken");
             $appId = $this->ReadPropertyString("WbAppId");
@@ -55,7 +55,7 @@ class WhatsappMessage extends IPSModule {
                 "template" => [
                     "name" => $template,
                     "language" => [
-                        "code" => lang
+                        "code" => $lang
                     ],
                     "components" => [
                         [
