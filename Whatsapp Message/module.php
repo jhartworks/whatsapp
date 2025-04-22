@@ -36,11 +36,8 @@ class WhatsappMessage extends IPSModule {
             $paramarr= json_decode($arrString, true);
 
             $parameters = [];
-
-            for ($i = 0; $i < count($paramarr); $i++) {
-                $paramName = $paramarr[$i]['ParName'];
-                $paramValue = isset($paramvals[$i]) ? $paramvals[$i] : '';
-        
+            
+            foreach ($paramvals as $paramName => $paramValue) {
                 $parameters[] = [
                     "type" => "text",
                     "parameter_name" => $paramName,
@@ -49,7 +46,7 @@ class WhatsappMessage extends IPSModule {
             }
 
             print_r($parameters);
-
+            
             $data = [
                 "messaging_product" => "whatsapp",
                 "to" => $recip,
