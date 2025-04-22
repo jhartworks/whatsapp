@@ -48,6 +48,8 @@ class WhatsappMessage extends IPSModule {
                 ];
             }
 
+            print_r($parameters);
+
             $data = [
                 "messaging_product" => "whatsapp",
                 "to" => $recip,
