@@ -1,0 +1,14 @@
+{
+    "id": "{F5B46BA7-5F72-3AC4-5BBA-D2B111679F91}",
+    "name": "Whatsapp Message",
+    "type": 3,
+    "vendor": "Meta, Whatsapp",
+    "aliases":
+    [
+    ],
+    "url": "https://developers.facebook.com/",
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "WBM"
+}

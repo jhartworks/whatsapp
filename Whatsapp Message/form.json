@@ -1,0 +1,51 @@
+{
+    "elements":
+    [
+        { "type": "ValidationTextBox", "name": "WbToken", "caption": "Token" },
+        { "type": "ValidationTextBox", "name": "WbAppId", "caption": "App ID"},
+        { "type": "ValidationTextBox", "name": "WbTemplate", "caption": "Templatename"},
+        { "type": "ValidationTextBox", "name": "WbLang", "caption": "Language Code (de NICHT de_DE)"},
+        {
+            "type": "List",
+            "name": "Parameterlist",
+            "caption": "Parameter List",
+            "rowCount": 2,
+            "add": true,
+            "delete": true,
+            "sort": {
+                "column": "Name",
+                "direction": "ascending"
+            },
+            "columns": [{
+                "caption": "Parameter Alias",
+                "name": "ParAlias",
+                "width": "auto",
+                "add": "",
+                "edit": {
+                    "type": "ValidationTextBox"
+                }
+            }, {
+                "caption": "Parametername",
+                "name": "ParName",
+                "width": "auto",
+                "add": "",
+                "edit": {
+                    "type": "ValidationTextBox"
+                }
+            }],
+            "values": [{
+                "ParAlias": "New Parameter",
+                "ParName": "pn"    
+            }]
+        }
+
+    ],
+    "actions":
+    [
+        { "type": "Button", "label": "Send Message", "onClick": "WBM_SendMessage($id, $Params);" }
+    ],
+    "status":
+    [
+
+    ]
+}
