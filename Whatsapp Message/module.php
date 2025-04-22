@@ -25,6 +25,23 @@ class WhatsappMessage extends IPSModule {
     * DWM_SendMessage($id);
     *
     */
+
+
+    private function normalizePhoneNumber($number) {
+        // 1. Entferne führendes + oder 0
+        $number = ltrim($number, '+');
+        if (strpos($number, '0') === 0) {
+            $number = substr($number, 1);
+        }
+    
+        // 2. Wenn keine 49 am Anfang steht, füge sie hinzu
+        if (strpos($number, '49') !== 0) {
+            $number = '49' . $number;
+        }
+    
+        return $number;
+    }
+    
     public function SendMessage(string $recip, array $paramvals) {
         
             $token = $this->ReadPropertyString("WbToken");
@@ -45,8 +62,10 @@ class WhatsappMessage extends IPSModule {
                 ];
             }
 
-            print_r($parameters);
+            //print_r($parameters);
             
+            $recip = $this->normalizePhoneNumber($recip);
+
             $data = [
                 "messaging_product" => "whatsapp",
                 "to" => $recip,
@@ -80,7 +99,7 @@ class WhatsappMessage extends IPSModule {
             $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
             
-            echo "HTTP-Code: $httpcode\nAntwort: $response\n";
+           // echo "HTTP-Code: $httpcode\nAntwort: $response\n";
 
     }
 }
