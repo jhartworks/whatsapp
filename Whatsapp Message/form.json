@@ -28,7 +28,7 @@
             }, {
                 "caption": "Whatsappnumber",
                 "name": "Number",
-                "width": "75px",
+                "width": "auto",
                 "add": 20.0,
                 "edit": {
                     "type": "ValidationTextBox"
