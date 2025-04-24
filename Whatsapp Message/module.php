@@ -109,7 +109,7 @@ class WhatsappMessage extends IPSModule {
 
         foreach ($entries as $entry){
             $number = $entry['Number'];
-            SendMessageEx($number[], $paramvals);
+            SendMessageEx($number, $paramvals);
         }
 
     }
