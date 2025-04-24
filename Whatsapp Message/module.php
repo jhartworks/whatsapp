@@ -102,7 +102,7 @@ class WhatsappMessage extends IPSModule {
            // echo "HTTP-Code: $httpcode\nAntwort: $response\n";
 
     }
-    private function SendMessage(array $paramvals) {
+    public function SendMessage(array $paramvals) {
         
         $arrnumbers = $this->ReadPropertyString("Numberlist");   
         $entries = json_decode($arrnumbers, true);
