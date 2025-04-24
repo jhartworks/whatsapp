@@ -98,7 +98,7 @@ class WhatsappMessage extends IPSModule {
             $response = curl_exec($ch);
             $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
-            return isMessageAccepted($response);
+            return $this->isMessageAccepted($response);
            // echo "HTTP-Code: $httpcode\nAntwort: $response\n";
 
     }
@@ -109,7 +109,7 @@ class WhatsappMessage extends IPSModule {
 
         foreach ($entries as $entry){
             $number = $entry['Number'];
-            SendMessageEx($number, $paramvals);
+            $this->SendMessageEx($number, $paramvals);
         }
 
     }
