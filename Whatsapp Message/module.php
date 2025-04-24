@@ -10,7 +10,7 @@ class WhatsappMessage extends IPSModule {
         $this->RegisterPropertyString("WbAppId","");
         $this->RegisterPropertyString("WbTemplate","stoerung");
         $this->RegisterPropertyString("WbLang","de");
-        $this->RegisterPropertyString("Parameterlist","");
+        $this->RegisterPropertyString("Numberlist","");
     }
 
     // Überschreibt die intere IPS_ApplyChanges($id) Funktion
@@ -41,8 +41,8 @@ class WhatsappMessage extends IPSModule {
     
         return $number;
     }
-    
-    public function SendMessage(string $recip, array $paramvals) {
+
+    public function SendMessageEx(string $recip, array $paramvals) {
         
             $token = $this->ReadPropertyString("WbToken");
             $appId = $this->ReadPropertyString("WbAppId");
@@ -84,7 +84,7 @@ class WhatsappMessage extends IPSModule {
                 ]
             ];
             
-            echo "JSON:\n" . json_encode($data, JSON_PRETTY_PRINT) . "\n\n";
+            //echo "JSON:\n" . json_encode($data, JSON_PRETTY_PRINT) . "\n\n";
             
             $ch = curl_init('https://graph.facebook.com/v22.0/'.$appId.'/messages');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -98,9 +98,31 @@ class WhatsappMessage extends IPSModule {
             $response = curl_exec($ch);
             $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
-            
+            return isMessageAccepted($response);
            // echo "HTTP-Code: $httpcode\nAntwort: $response\n";
 
+    }
+    private function SendMessage(array $paramvals) {
+        
+        $arrnumbers = $this->ReadPropertyString("Numberlist");   
+        $entries = json_decode($arrnumbers, true);
+
+        foreach ($entries as $entry){
+            $number = $entry['Number'];
+            SendMessageEx($number[], $paramvals);
+        }
+
+    }
+    private function isMessageAccepted($jsonResponse) {
+        $data = json_decode($jsonResponse, true);
+    
+        // message_status MUSS vorhanden und accepted sein
+        if (isset($data['messages'][0]['message_status']) && $data['messages'][0]['message_status'] === 'accepted') {
+            return true;
+        }
+    
+        // Wenn message_status fehlt oder nicht "accepted" ist → false
+        return false;
     }
 }
 ?>

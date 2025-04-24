@@ -4,8 +4,41 @@
         { "type": "ValidationTextBox", "name": "WbToken", "caption": "Token" },
         { "type": "ValidationTextBox", "name": "WbAppId", "caption": "App ID"},
         { "type": "ValidationTextBox", "name": "WbTemplate", "caption": "Templatename"},
-        { "type": "ValidationTextBox", "name": "WbLang", "caption": "Language Code (de NICHT de_DE)"}
+        { "type": "ValidationTextBox", "name": "WbLang", "caption": "Language Code (de NICHT de_DE)"},
+        {
+            "type": "List",
+            "name": "Numberlist",
+            "caption": "Reciever List",
+            "rowCount": 5,
+            "add": true,
+            "delete": true,
+            "sort": {
+                "column": "Name",
+                "direction": "ascending"
+            },
+            "columns": [{
+                "caption": "Name",
+                "name": "Name",
+                "width": "auto",
+                "add": "",
+                "edit": {
+                    "type": "ValidationTextBox"
 
+                }
+            }, {
+                "caption": "Whatsappnumber",
+                "name": "Number",
+                "width": "75px",
+                "add": 20.0,
+                "edit": {
+                    "type": "ValidationTextBox"
+                }
+            }],
+            "values": [{
+                "Name": "Hans Maier Müller der Echte",
+                "Number": "49150815123456"
+            }]
+        }
 
     ],
     "actions":
